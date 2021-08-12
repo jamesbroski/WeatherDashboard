@@ -1,17 +1,89 @@
 var APIkey = " d07b9275bb45428d6f5ad27aa9152b94 ";
 
+var container = $("display");
+
 var button = document.querySelector(".button");
 var inputValue = document.querySelector(".inputValue");
 var name = document.querySelector(".name");
 var desc = document.querySelector(".desc");
 var temp = document.querySelector(".temp");
 
+var fiveDayCardWrapper = $("#fiveDayWrapper");
 button.addEventListener("click", function () {
   fetch(
-    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+    "http://api.openweathermap.org/geo/1.0/direct?q=" +
       inputValue.value +
-      "&appid=d07b9275bb45428d6f5ad27aa9152b94"
+      // "denver" +
+      "&limit=1&appid=d07b9275bb45428d6f5ad27aa9152b94"
+    // "&units=imperial&cnt=5&appid=d07b9275bb45428d6f5ad27aa9152b94"
   )
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      // console.log(data);
+      const lon = data[0].lon;
+      const lat = data[0].lat;
+      fetch(
+        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+          lat +
+          "&lon=" +
+          lon +
+          "&exclude=hourly,minutely&units=imperial&appid=d07b9275bb45428d6f5ad27aa9152b94"
+
+        // "&units=imperial&cnt=5&appid=d07b9275bb45428d6f5ad27aa9152b94"
+      )
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          // console.log(data);
+          var currentDay = data.current;
+          console.log(currentDay);
+          //everything below is for five day forecast
+          var fiveDay = data.daily.slice(0, 5);
+          console.log(fiveDayCardWrapper);
+          fiveDayCardWrapper.empty();
+          // console.log(fiveDayCardWrapper);
+          for (let index = 0; index < fiveDay.length; index++) {
+            const element = fiveDay[index];
+
+            //   <div id="day1">
+            //   <p class="date">Date: 08-12-21</p>
+            //   <p class="icon">Icon</p>
+            //   <p class="temperature">Temp: 85 F</p>
+            //   <p class="windSpeed">Wind: 9.23 MPH</p>
+            //   <p class="humidity">Humidity: 34%</p>
+            // </div>
+            var year = new Date(element.dt).getFullYear();
+            var month = new Date(element.dt).getMonth() + 1;
+            var day = new Date(element.dt).getDate();
+            var currentDate = day + "/" + month + "/" + year;
+            var dateEl = "<p class='date'>Date: " + currentDate + " </p>";
+            var iconEl =
+              "<img class='icon' src='https://openweathermap.org/img/w/" +
+              element.weather[0].icon +
+              ".png'>";
+            var tempEl =
+              "<p class='temperature'>Temp: " + element.temp.day + " F</p>";
+            var windEl =
+              "<p class='windSpeed'>Wind: " + element.wind_speed + " MPH</p>";
+            var humidityEl =
+              "<p class='humidity'>Humidity: " + element.humidity + " %</p>";
+
+            var divDay =
+              "<div id='day" +
+              (index + 1) +
+              "'>" +
+              dateEl +
+              iconEl +
+              tempEl +
+              windEl +
+              humidityEl +
+              "</div>";
+
+            $("#fiveDayWrapper").append(divDay);
+          }
+        });
+    });
 });
