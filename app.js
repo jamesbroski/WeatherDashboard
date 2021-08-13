@@ -5,7 +5,10 @@ var container = $("display");
 var button = document.querySelector(".button");
 var inputValue = document.querySelector(".inputValue");
 
+var currentDayCardWrapper = $("#currentDayWrapper");
+
 var fiveDayCardWrapper = $("#fiveDayWrapper");
+
 button.addEventListener("click", function () {
   fetch(
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -36,7 +39,9 @@ button.addEventListener("click", function () {
         .then(function (data) {
           // console.log(data);
           var currentDay = data.current;
-          console.log(currentDay);
+          console.log(currentDayCardWrapper);
+          currentDayCardWrapper.empty();
+
           //everything below is for five day forecast
           var fiveDay = data.daily.slice(0, 5);
           console.log(fiveDayCardWrapper);
@@ -52,33 +57,27 @@ button.addEventListener("click", function () {
             //   <p class="windSpeed">Wind: 9.23 MPH</p>
             //   <p class="humidity">Humidity: 34%</p>
             // </div>
-            var year = new Date(element.dt).getFullYear();
-            var month = new Date(element.dt).getMonth() + 1;
-            var day = new Date(element.dt).getDate();
-            var currentDate = day + "/" + month + "/" + year;
-            var dateEl =
-              "<p class='col-12' class='date'>Date: " + currentDate + " </p>";
+            var milliseconds = element.dt * 1000;
+            var year = new Date(milliseconds).getFullYear();
+            var month = new Date(milliseconds).getMonth() + 1;
+            var day = new Date(milliseconds).getDate();
+            var currentDate = month + "/" + day + "/" + year;
+            var dateEl = "<p class='date'>Date: " + currentDate + " </p>";
             var iconEl =
               "<img class='icon' src='https://openweathermap.org/img/w/" +
               element.weather[0].icon +
               ".png'>";
             var tempEl =
-              "<p class='col-12' class='temperature'>Temp: " +
-              element.temp.day +
-              " F</p>";
+              "<p class='temperature'>Temp: " + element.temp.day + " F</p>";
             var windEl =
-              "<p class='col-12' class='windSpeed'>Wind: " +
-              element.wind_speed +
-              " MPH</p>";
+              "<p class='windSpeed'>Wind: " + element.wind_speed + " MPH</p>";
             var humidityEl =
-              "<p class='col-12' class='humidity'>Humidity: " +
-              element.humidity +
-              " %</p>";
+              "<p class='humidity'>Humidity: " + element.humidity + " %</p>";
 
             var divDay =
               "<div id='day" +
               (index + 1) +
-              "'>" +
+              "' class=col-1>" +
               dateEl +
               iconEl +
               tempEl +
