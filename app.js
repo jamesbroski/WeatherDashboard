@@ -56,17 +56,24 @@ button.addEventListener("click", function () {
             var month = new Date(element.dt).getMonth() + 1;
             var day = new Date(element.dt).getDate();
             var currentDate = day + "/" + month + "/" + year;
-            var dateEl = "<p class='date'>Date: " + currentDate + " </p>";
+            var dateEl =
+              "<p class='col-12' class='date'>Date: " + currentDate + " </p>";
             var iconEl =
               "<img class='icon' src='https://openweathermap.org/img/w/" +
               element.weather[0].icon +
               ".png'>";
             var tempEl =
-              "<p class='temperature'>Temp: " + element.temp.day + " F</p>";
+              "<p class='col-12' class='temperature'>Temp: " +
+              element.temp.day +
+              " F</p>";
             var windEl =
-              "<p class='windSpeed'>Wind: " + element.wind_speed + " MPH</p>";
+              "<p class='col-12' class='windSpeed'>Wind: " +
+              element.wind_speed +
+              " MPH</p>";
             var humidityEl =
-              "<p class='humidity'>Humidity: " + element.humidity + " %</p>";
+              "<p class='col-12' class='humidity'>Humidity: " +
+              element.humidity +
+              " %</p>";
 
             var divDay =
               "<div id='day" +
