@@ -21,7 +21,12 @@
       <div class="row">
         <div class="col-12 border-1">
           <div class="input">
-            <input type="text" class="inputValue" placeholder="Enter a City" />
+            <input
+              type="text"
+              class="inputValue"
+              id="saveCity"
+              placeholder="Enter a City"
+            />
             <input type="submit" value="submit" class="button" />
           </div>
         </div>
@@ -30,11 +35,11 @@
 
     <div id="currentDay">
       <h3>Current Day</h3>
-      <div id="currentDayWrapper"></div>
+      <div style="display: flex" id="currentDayWrapper"></div>
     </div>
 
-    <div id="fiveDay">
-      <h3>5-Day Forecast</h3>
+    <div class="row-border" id="fiveDay">
+      <h3 class="col-12">5-Day Forecast</h3>
       <div style="display: flex" id="fiveDayWrapper"></div>
     </div>
 

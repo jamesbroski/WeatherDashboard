@@ -1,12 +1,11 @@
 var APIkey = " d07b9275bb45428d6f5ad27aa9152b94 ";
-
+var cities = [];
 var container = $("display");
 
 var button = document.querySelector(".button");
 var inputValue = document.querySelector(".inputValue");
 
 var currentDayCardWrapper = $("#currentDayWrapper");
-
 var fiveDayCardWrapper = $("#fiveDayWrapper");
 
 button.addEventListener("click", function () {
@@ -47,6 +46,7 @@ button.addEventListener("click", function () {
           console.log(fiveDayCardWrapper);
           fiveDayCardWrapper.empty();
           // console.log(fiveDayCardWrapper);
+
           for (let index = 0; index < fiveDay.length; index++) {
             const element = fiveDay[index];
 
@@ -87,6 +87,10 @@ button.addEventListener("click", function () {
 
             $("#fiveDayWrapper").append(divDay);
           }
+          $("#currentDayWrapper").append(divDay);
         });
     });
+  localStorage.setItem("inputValue", inputValue);
 });
+
+var savedCity = localStorage.getItem(inputValue.value);
