@@ -11,7 +11,7 @@ The live weather data includes:
 Temperature, Humidity, Wind-Speed, Date, and an Icon representing what the weather is looking like. 
 
 Below is the deployed link to the application:
-
+https://jamesbroski.github.io/WeatherDashboard/
 
 Below is what the user should expect to see when using the application:
 ![Screen Shot 2021-08-22 at 8 29 30 PM](https://user-images.githubusercontent.com/87332492/130381825-fd1e90a2-bdad-4370-a756-39062a59c99d.png)
