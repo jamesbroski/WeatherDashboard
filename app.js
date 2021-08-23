@@ -9,9 +9,16 @@ var currentDayCardWrapper = $("#currentDayWrapper");
 var fiveDayCardWrapper = $("#fiveDayWrapper");
 
 button.addEventListener("click", function () {
+  search(inputValue.value);
+  localStorage.setItem("inputValue", inputValue.value);
+});
+
+var savedCity = localStorage.getItem("inputValue");
+search(savedCity);
+function search(value) {
   fetch(
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
-      inputValue.value +
+      value +
       // "denver" +
       "&limit=1&appid=d07b9275bb45428d6f5ad27aa9152b94"
     // "&units=imperial&cnt=5&appid=d07b9275bb45428d6f5ad27aa9152b94"
@@ -90,7 +97,4 @@ button.addEventListener("click", function () {
           $("#currentDayWrapper").append(divDay);
         });
     });
-  localStorage.setItem("inputValue", inputValue);
-});
-
-var savedCity = localStorage.getItem(inputValue.value);
+}

@@ -40,3 +40,24 @@ input[type="submit"] {
 .display {
   text-align: center;
 }
+
+#currentDayWrapper {
+  background: lightblue;
+  justify-content: center;
+}
+
+#single {
+  display: flex;
+  justify-content: center;
+  background: lightgray;
+}
+#fiveDayWrapper {
+  background: lightblue;
+  justify-content: space-around;
+}
+
+#multi {
+  background: lightgray;
+  display: flex;
+  justify-content: center;
+}
