@@ -1,5 +1,5 @@
 var APIkey = " d07b9275bb45428d6f5ad27aa9152b94 ";
-var cities = [];
+
 var container = $("display");
 
 var button = document.querySelector(".button");
