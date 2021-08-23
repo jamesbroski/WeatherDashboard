@@ -14,4 +14,5 @@ Below is the deployed link to the application:
 
 
 Below is what the user should expect to see when using the application:
+![Screen Shot 2021-08-22 at 8 29 30 PM](https://user-images.githubusercontent.com/87332492/130381825-fd1e90a2-bdad-4370-a756-39062a59c99d.png)
 
